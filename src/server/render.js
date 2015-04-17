@@ -22,7 +22,7 @@ function loadData(path, locale) {
   return axios.get('https://www.wehkamp.com/nlbe/api/products?categoryPath=%2Fdamesmode%2Fblouses-tunieken%2F&page=1')
     .then((ajaxResponse) => {
       appState.damesMode = ajaxResponse.data.products
-        .map(function (product) {
+        .map((product) => {
           return {
             title: product.websiteDescription,
             productId: product.productNumber,
