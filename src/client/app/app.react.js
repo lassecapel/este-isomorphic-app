@@ -35,13 +35,8 @@ export default class App extends React.Component {
               <a href="https://github.com/steida/este">Este.js</a> App
             </h1>
             <ul>
-              <li><Link to="home">Home</Link></li>
               <li><Link to="search">Search</Link></li>
-              <li><Link to="todos">Todos</Link></li>
-              <li><Link to="me">Me (protected)</Link></li>
-              {!isLoggedIn() &&
-                <li><Link to="login">Login</Link></li>}
-              <li><Link to="herenmode">Herenmode</Link></li>
+              <li><Link to="shopper">shoppper</Link></li>
             </ul>
           </header>
           <RouteHandler />
