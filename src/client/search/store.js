@@ -1,4 +1,4 @@
-import {onSearchFieldChange} from './actions';
+import {onSearchFieldChange,searchForQuery} from './actions';
 import {Range, Record} from 'immutable';
 import {getRandomString} from '../../lib/getrandomstring';
 import {register} from '../dispatcher';
@@ -11,6 +11,9 @@ export const dispatchToken = register(({action, data}) => {
                 const {name, value} = data;
                 return q.setIn([name], value);
             });
+            break;
+        case searchForQuery:
+            console.log(data);
             break;
     }
 });

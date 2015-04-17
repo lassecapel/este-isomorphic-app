@@ -8,7 +8,7 @@ export default class SearchBox extends PureComponent {
 
     searchOnEnter(e) {
         if (e.key === 'Enter')
-            searchForQuery(this.props.search)
+            searchForQuery(this.props.search.get('query'))
     }
 
     render() {
