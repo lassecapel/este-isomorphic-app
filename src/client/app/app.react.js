@@ -42,7 +42,7 @@ export default class App extends React.Component {
           <RouteHandler />
           <footer>
             <p>
-              made by <a href="https://twitter.com/steida">steida</a>
+              made by Web Technology Innovation Squad
             </p>
           </footer>
         </div>
