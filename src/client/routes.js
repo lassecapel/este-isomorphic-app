@@ -5,6 +5,7 @@ import Me from './pages/me.react';
 import NotFound from './pages/notfound.react';
 import React from 'react';
 import Todos from './pages/todos.react';
+import Herenmode from './pages/herenmode.react';
 import {DefaultRoute, NotFoundRoute, Route} from 'react-router';
 
 export default (
@@ -14,5 +15,6 @@ export default (
     <Route handler={Login} name="login" />
     <Route handler={Me} name="me" />
     <Route handler={Todos} name="todos" />
+    <Route handler={Herenmode} name="herenmode" />
   </Route>
 );
