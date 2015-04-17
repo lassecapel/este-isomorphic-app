@@ -40,6 +40,7 @@ export default class App extends React.Component {
               <li><Link to="me">Me (protected)</Link></li>
               {!isLoggedIn() &&
                 <li><Link to="login">Login</Link></li>}
+              <li><Link to="herenmode">Herenmode</Link></li>
             </ul>
           </header>
           <RouteHandler />

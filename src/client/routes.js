@@ -6,6 +6,7 @@ import Shopper from './app/shopper.react';
 import NotFound from './pages/notfound.react';
 import React from 'react';
 import Todos from './pages/todos.react';
+import Herenmode from './pages/herenmode.react';
 import {DefaultRoute, NotFoundRoute, Route} from 'react-router';
 
 export default (
@@ -17,5 +18,6 @@ export default (
   //   <Route handler={Todos} name="todos" />
   // </Route>
   <Route handler={Shopper} path="/">
+    <Route handler={Herenmode} name="herenmode" />
   </Route>
 );
