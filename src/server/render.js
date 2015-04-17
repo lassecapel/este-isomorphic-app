@@ -19,7 +19,7 @@ export default function render(req, res, locale) {
 function loadData(path, locale) {
   // TODO: Preload and merge user specific state.
   const appState = initialState;
-  return axios.get('https://www.wehkamp.com/nlbe/api/products?categoryPath=%2Fdamesmode%2F&page=1')
+  return axios.get('https://www.wehkamp.com/nlbe/api/products?categoryPath=%2Fdamesmode%2Fblouses-tunieken%2F&page=1')
     .then((ajaxResponse) => {
       appState.damesMode = ajaxResponse.data.products
         .map(function (product) {
