@@ -11,14 +11,6 @@ import Herenmode from './pages/herenmode.react';
 import {DefaultRoute, NotFoundRoute, Route} from 'react-router';
 
 export default (
-<<<<<<< Updated upstream
-  // <Route handler={App} path="/a">
-  //   <DefaultRoute handler={Home} name="home" />
-  //   <NotFoundRoute handler={NotFound} name="not-found" />
-  //   <Route handler={Login} name="login" />
-  //   <Route handler={Me} name="me" />
-  //   <Route handler={Todos} name="todos" />
-  // </Route>
   <Route handler={Shopper} path="/">
     <Route handler={Herenmode} name="herenmode" />
     <Route handler={Search} name="search" />
