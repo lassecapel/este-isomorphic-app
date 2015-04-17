@@ -4,12 +4,14 @@ import Login from './pages/login.react';
 import Me from './pages/me.react';
 import Shopper from './app/shopper.react';
 import NotFound from './pages/notfound.react';
+import Search from './pages/searchpage.react';
 import React from 'react';
 import Todos from './pages/todos.react';
 import Herenmode from './pages/herenmode.react';
 import {DefaultRoute, NotFoundRoute, Route} from 'react-router';
 
 export default (
+<<<<<<< Updated upstream
   // <Route handler={App} path="/a">
   //   <DefaultRoute handler={Home} name="home" />
   //   <NotFoundRoute handler={NotFound} name="not-found" />
@@ -19,5 +21,6 @@ export default (
   // </Route>
   <Route handler={Shopper} path="/">
     <Route handler={Herenmode} name="herenmode" />
+    <Route handler={Search} name="search" />
   </Route>
 );

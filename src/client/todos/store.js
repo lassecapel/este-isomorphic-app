@@ -12,8 +12,7 @@ const TodoItem = Record({
 });
 
 export const dispatchToken = register(({action, data}) => {
-
-  switch (action) {
+    switch (action) {
     case actions.onNewTodoFieldChange:
       newTodoCursor(todo => {
         // Use destructuring assignment. It's explicit.

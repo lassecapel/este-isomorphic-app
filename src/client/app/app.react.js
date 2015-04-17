@@ -36,6 +36,7 @@ export default class App extends React.Component {
             </h1>
             <ul>
               <li><Link to="home">Home</Link></li>
+              <li><Link to="search">Search</Link></li>
               <li><Link to="todos">Todos</Link></li>
               <li><Link to="me">Me (protected)</Link></li>
               {!isLoggedIn() &&

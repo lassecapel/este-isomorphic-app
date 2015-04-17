@@ -91,43 +91,6 @@ export default class Todos extends React.Component {
               steps={undoStates.length - 1}
             /></button>
           </div>
-          <h3>
-            Things to Check
-          </h3>
-          <ul>
-            <li>View page source, take a look how app is server rendered with initial data.</li>
-            <li>Open console, take a look how actions are logged from <code>src/client/dispatcher.js</code>.</li>
-            <li>
-              Development mode (<code>gulp</code>), try livereload styles or <a href="https://www.youtube.com/watch?v=pw4fKkyPPg8">
-              live-editing</a> React components without app refresh.
-            </li>
-            <li>
-              Production mode (<code>gulp -p</code>), to check built app performance and size.
-            </li>
-            <li>
-              Isomorphic <Link to="/this-is-not-the-web-page-you-are-looking-for">
-              404</Link> page.
-            </li>
-            <li>Undo button.</li>
-            <li>
-              Global immutable app state, have you seen this <a href="https://www.youtube.com/watch?v=5yHFTN-_mOo">
-              video</a>? Try <b>shift+ctrl+s</b> to save app state, and <b>
-              shift+ctrl+l</b> to reload.
-            </li>
-            <li>
-                <a href="http://facebook.github.io/react/docs/advanced-performance.html">
-                Advanced performance</a> with <a href="http://facebook.github.io/react/docs/pure-render-mixin.html">PureRenderMixin</a>.
-              </li>
-            <li>
-              <a href="https://github.com/ftlabs/fastclick">ftlabs/fastclick
-              </a> to remove click delays on browsers with touch UIs.
-            </li>
-            <li>
-              <a href="http://formatjs.io">formatjs.io</a> localization with <a href="https://github.com/andyearnshaw/Intl.js">
-              polyfill</a> for browsers without native Intl.
-            </li>
-            <li>... and much more.</li>
-          </ul>
         </section>
       </DocumentTitle>
     );
