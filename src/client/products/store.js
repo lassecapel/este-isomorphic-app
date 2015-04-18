@@ -15,19 +15,17 @@ const Product = Record({
 
 function storeProductsInState(serverProducts) {
   productsCursor(products => {
-    products.withMutations(products => {
-      //products.clear();
+    return products.withMutations(list => {
+      list.clear();
       serverProducts.forEach((serverProduct) => {
-        console.log('pushing', serverProduct);
-        products.push(new Product({
+        list.push(new Product({
           title: serverProduct.websiteDescription,
           productId: serverProduct.productNumber,
           src: 'https://assets.wehkamp.com/i/wehkamp/' + serverProduct.productNumber + '_pb_01/' + serverProduct.normalizedName + '.jpg?$product300x300$'
-        }).toMap());
+        }));
       });
     });
   });
-  window._appState = state.save();
 }
 
 export const dispatchToken = register(({action, data}) => {
@@ -49,6 +47,6 @@ export const dispatchToken = register(({action, data}) => {
   }
 });
 
-export function getProducts(){
+export function getProducts() {
   return productsCursor();
 }
