@@ -11,12 +11,12 @@ import {state} from '../client/state';
 
 
 export default function render(req, res, locale) {
-  const path = req.path;
-  return loadData(path, locale)
-    .then((appState) => renderPage(res, appState, path));
+  const url = req.originalUrl;
+  return loadData(url, locale)
+    .then((appState) => renderPage(res, appState, url));
 }
 
-function loadData(path, locale) {
+function loadData(url, locale) {
   // TODO: Preload and merge user specific state.
   const appState = initialState;
   return axios.get('https://www.wehkamp.com/nlbe/api/products?categoryPath=%2Fdamesmode%2Fblouses-tunieken%2F&page=1')
