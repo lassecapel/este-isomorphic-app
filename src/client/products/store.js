@@ -29,6 +29,7 @@ function storeProductsInState(serverProducts) {
   });
   window._appState = state.save();
 }
+
 export const dispatchToken = register(({action, data}) => {
   console.log('action', action, data);
   switch (action) {
@@ -47,3 +48,7 @@ export const dispatchToken = register(({action, data}) => {
       break;
   }
 });
+
+export function getProducts(){
+  return productsCursor();
+}

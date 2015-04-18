@@ -17,3 +17,7 @@ export const dispatchToken = register(({action, data}) => {
             break;
     }
 });
+
+export function getSearch() {
+  return searchCursor();
+}
