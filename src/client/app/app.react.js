@@ -36,7 +36,6 @@ export default class App extends React.Component {
             </h1>
             <ul>
               <li><Link to="search">Search</Link></li>
-              <li><Link to="shopper">shoppper</Link></li>
             </ul>
           </header>
           <RouteHandler />

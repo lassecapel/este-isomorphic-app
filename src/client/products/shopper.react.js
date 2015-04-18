@@ -38,7 +38,7 @@ export default class Shopper extends React.Component {
 }
 
 
-export class Plaatje extends React.Component {
+class Plaatje extends React.Component {
 
   render() {
     return (
