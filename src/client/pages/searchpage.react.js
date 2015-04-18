@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import SearchBox from '../search/searchbox.react';
 import {state, searchCursor} from '../state';
 import {dispatchToken} from '../search/store';
+import {dispatchToken as productsDispatch}  from '../products/store';
 
 export default class SearchPage extends React.Component {
 

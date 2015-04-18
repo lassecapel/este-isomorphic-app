@@ -26,13 +26,7 @@ export default {
     {id: 1, title: 'consider ‘stop doing’ app'},
     {id: 2, title: 'relax'}
   ],
-  damesMode : Array.from(Array(1).keys()).map(i => {
-    return ({
-      'src': 'http://hermanschoenen.nl/wp-content/gallery/joshv-diamond-2013-spring-summer/damesmode-met-injeans-online-dames-pak-pugina-j100.jpg',
-      'title': 'Hoi',
-      'productId': '123'
-    });
-  }),
+  products : [],
   user: {
     authData: null
   },

@@ -2,7 +2,7 @@ import DocumentTitle from 'react-document-title';
 import React from 'react';
 import {Link, RouteHandler} from 'react-router';
 import {isLoggedIn} from '../user/store';
-import {state, damesModeCursor} from '../state';
+import {state, productsCursor} from '../state';
 import immutable from 'immutable';
 
 // Leverage webpack require goodness for feature toggle based dead code removal.
@@ -14,7 +14,7 @@ export default class Shopper extends React.Component {
   }
 
   render() {
-    const plaatjes = damesModeCursor();
+    const plaatjes = productsCursor();
     return (
       <DocumentTitle title='Dames Mode Shopper'>
         <div className="page">
@@ -25,7 +25,7 @@ export default class Shopper extends React.Component {
           <div>
             {plaatjes.map((plaatje, i) => {
               return <div style={{float:"left"}}>
-                <div>{plaatje.get('title')}</div> 
+                <div>{plaatje.get('title')}</div>
                 <div><Plaatje src={plaatje.get('src')} title={plaatje.get('title')}/></div>
               </div>;
             })}

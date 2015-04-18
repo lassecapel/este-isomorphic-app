@@ -1,6 +1,7 @@
 /*eslint-disable no-console */
 
 import compression from 'compression';
+import proxy from 'express-http-proxy';
 import config from './config';
 import express from 'express';
 // import favicon from 'serve-favicon';
@@ -16,6 +17,15 @@ export default function() {
   // TODO: Move to CDN.
   app.use('/build', express.static('build'));
   app.use('/assets', express.static('assets'));
+
+  app.use('/nlbe/api', proxy('https://www.wehkamp.com', {
+    filter: function(req) {
+      return req.method == 'GET';
+    },
+    forwardPath: function(req) {
+      return req.originalUrl;
+    }
+  }));
 
   app.get('*', (req, res) => {
     const acceptsLanguages = req.acceptsLanguages(config.appLocales);
