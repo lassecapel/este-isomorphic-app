@@ -8,7 +8,7 @@ import {dispatchToken as productsDispatch}  from '../products/store';
 
 import ProductList from '../products/productlist.react';
 import {getProducts} from '../products/store'
-import {getSearch} from '../search/store'
+import {getSearchQuery} from '../search/store'
 
 export default
 class SearchPage extends React.Component {
@@ -20,7 +20,7 @@ class SearchPage extends React.Component {
             <h1>Search page</h1>
           </header>
           <section>
-            <SearchBox search={getSearch()}/>
+            <SearchBox query={getSearchQuery()}/>
           </section>
           <section>
             <ProductList products={getProducts()}/>

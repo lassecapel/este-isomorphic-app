@@ -18,6 +18,6 @@ export const dispatchToken = register(({action, data}) => {
     }
 });
 
-export function getSearch() {
-  return searchCursor();
+export function getSearchQuery() {
+  return searchCursor().get('query');
 }

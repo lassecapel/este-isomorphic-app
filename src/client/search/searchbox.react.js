@@ -8,7 +8,7 @@ export default class SearchBox extends PureComponent {
 
     searchOnEnter(e) {
         if (e.key === 'Enter')
-            searchForQuery(this.props.search.get('query'))
+            searchForQuery(this.props.query)
     }
 
     render() {
@@ -20,7 +20,7 @@ export default class SearchBox extends PureComponent {
                 onKeyDown={(e) => this.searchOnEnter(e)}
                 placeholder={msg('search.placeholder')}
                 onChange={onSearchFieldChange}
-                value={this.props.search.get('query')}
+                value={this.props.query}
                 />
         );
     }
