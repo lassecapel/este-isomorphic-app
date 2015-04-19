@@ -41,8 +41,8 @@ export default {
       message: 'The link may be broken, or the page may have been removed.',
       continueMessage: 'Continue here please.'
     },
-      search: {
-          "placeholder" : "Search"
-      }
+    search: {
+      "placeholder": "Search"
+    }
   }
 };
