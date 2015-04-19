@@ -12,13 +12,14 @@ import {state} from '../client/state';
 
 export default function render(req, res, locale) {
   const url = req.originalUrl;
-  return loadData(url, locale)
+  return loadData(req, locale)
     .then((appState) => renderPage(res, appState, url));
 }
 
-function loadData(url, locale) {
+function loadData(req, locale) {
   // TODO: Preload and merge user specific state.
   const appState = initialState;
+  appState.search.query = req.query.q;
   return axios.get('https://www.wehkamp.com/nlbe/api/products?categoryPath=%2Fdamesmode%2Fblouses-tunieken%2F&page=1')
     .then((ajaxResponse) => {
       appState.products = ajaxResponse.data.products

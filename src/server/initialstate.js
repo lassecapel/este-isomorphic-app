@@ -26,11 +26,11 @@ export default {
     {id: 1, title: 'consider ‘stop doing’ app'},
     {id: 2, title: 'relax'}
   ],
-  products : [],
+  products: [],
   user: {
     authData: null
   },
-    search: {
-        query: ''
-    }
+  search: {
+    query: ''
+  }
 };

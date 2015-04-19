@@ -5,17 +5,13 @@ import {register} from '../dispatcher';
 import {searchCursor} from '../state';
 
 export const dispatchToken = register(({action, data}) => {
-    switch (action) {
-        case onSearchFieldChange:
-            searchCursor(q => {
-                const {name, value} = data;
-                return q.setIn([name], value);
-            });
-            break;
-        case searchForQuery:
-            console.log(data);
-            break;
-    }
+  switch (action) {
+    case searchForQuery:
+      searchCursor(q => {
+        return q.set('query', data)
+      });
+      break;
+  }
 });
 
 export function getSearchQuery() {

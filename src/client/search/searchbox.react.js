@@ -5,13 +5,8 @@ import {searchForQuery} from './actions';
 import {msg} from '../intl/store';
 import exposeRouter from '../components/exposerouter.react';
 
-class SearchBox extends React.Component {
-  constructor(props) {
-    super();
-    this.updateState(props);
-  }
-
-  searchOnEnter(e) {
+class SearchBox extends PureComponent {
+  handleKeyDown(e) {
     if (e.key === 'Enter') {
       const router = this.props.router;
       const path = router.getCurrentPathname();
@@ -23,16 +18,6 @@ class SearchBox extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.updateState(nextProps);
-  }
-
-  updateState(props) {
-    this.state = {
-      query: props.router.getCurrentQuery().q
-    }
-  }
-
   render() {
     return (
       <div>
@@ -40,11 +25,12 @@ class SearchBox extends React.Component {
           autoFocus
           className="search"
           name="query"
-          onKeyDown={(e) => this.searchOnEnter(e)}
+          onKeyDown={(e) => {this.handleKeyDown(e)}}
           placeholder={msg('search.placeholder')}
+          defaultValue={this.props.query}
           />
 
-        <p>Searched for {this.state.query}</p>
+        <p>Searched for {this.props.query}</p>
       </div>
     );
   }
