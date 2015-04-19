@@ -7,11 +7,7 @@ export function searchForQuery(query) {
     dispatch(searchForQuery, query);
 }
 
-export function onSearchFieldChange({target: {name, value}}) {
-    dispatch(onSearchFieldChange, {name, value});
-}
-
 // Override actions toString for logging.
 setToString('search', {
-    searchForQuery, onSearchFieldChange
+    searchForQuery
 });

@@ -20,7 +20,7 @@ class SearchPage extends React.Component {
             <h1>Search page</h1>
           </header>
           <section>
-            <SearchBox query={getSearchQuery()}/>
+            <SearchBox/>
           </section>
           <section>
             <ProductList products={getProducts()}/>
