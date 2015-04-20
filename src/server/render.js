@@ -12,21 +12,12 @@ import {state} from '../client/state';
 
 export default function render(req, res, locale) {
   const url = req.originalUrl;
-  const appState = loadData(req, locale);
-  return renderPage(res, appState, url);
+  return renderPage(res, url);
 }
 
-function loadData(req, locale) {
-  // TODO: Preload and merge user specific state.
-  const appState = initialState;
-  appState.search.query = req.query.q;
-  return appState;
-}
-
-// TODO: Refactor.
-function renderPage(res, appState, path) {
+function renderPage(res, path) {
+  state.load(initialState);
   return new Promise((resolve, reject) => {
-    state.load(appState);
     const router = Router.create({
       routes,
       location: path,
@@ -43,7 +34,7 @@ function renderPage(res, appState, path) {
       }
     });
     router.run((Handler, routerState) => {
-      const html = getPageHtml(Handler, appState);
+      const html = getPageHtml(Handler, state.get().toJS());
       const notFound = routerState.routes.some(route => route.name === 'not-found');
       const status = notFound ? 404 : 200;
       res.status(status).send(html);
