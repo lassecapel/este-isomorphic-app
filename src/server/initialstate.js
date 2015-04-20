@@ -32,5 +32,6 @@ export default {
   },
   search: {
     query: ''
-  }
+  },
+  init: false
 };

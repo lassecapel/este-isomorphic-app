@@ -13,3 +13,4 @@ export const todosCursor = state.cursor(['todos']);
 export const userCursor = state.cursor(['user']);
 export const productsCursor = state.cursor(['products']);
 export const searchCursor = state.cursor(['search']);
+export const initCursor = state.cursor(['init']);

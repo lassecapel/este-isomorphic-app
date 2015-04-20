@@ -1,9 +1,10 @@
 import {searchForQuery} from '../search/actions';
 import {onProductsResponse, onServerProducts} from './actions';
-import {register} from '../dispatcher';
+import {register, unregister} from '../dispatcher';
 import {state, productsCursor} from '../state';
 import axios from 'axios';
 import {Record} from 'immutable';
+import {onInitStore} from '../../server/init-stores'
 
 // Isomorphic store has to be state-less.
 const Product = Record({
@@ -28,21 +29,21 @@ function storeProductsInState(serverProducts) {
   });
 }
 
+function requestProducts(query) {
+  onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query).catch(() => {
+    console.log('errror', arguments)
+  }));
+}
 export const dispatchToken = register(({action, data}) => {
-  console.log('action', action, data);
   switch (action) {
     case searchForQuery:
       const query = data;
-      onProductsResponse(axios.get('/nlbe/api/products?q=' + query));
+      requestProducts(query);
       break;
     case onProductsResponse:
       const productsResponse = data;
       const serverProducts = productsResponse.data.products;
       storeProductsInState(serverProducts);
-      onServerProducts(productsResponse.data.products);
-      break;
-    case onServerProducts:
-      storeProductsInState(data);
       break;
   }
 });

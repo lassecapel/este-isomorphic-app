@@ -12,31 +12,21 @@ import {state} from '../client/state';
 
 export default function render(req, res, locale) {
   const url = req.originalUrl;
-  return loadData(req, locale)
-    .then((appState) => renderPage(res, appState, url));
+  const appState = loadData(req, locale);
+  return renderPage(res, appState, url);
 }
 
 function loadData(req, locale) {
   // TODO: Preload and merge user specific state.
   const appState = initialState;
   appState.search.query = req.query.q;
-  return axios.get('https://www.wehkamp.com/nlbe/api/products?categoryPath=%2Fdamesmode%2Fblouses-tunieken%2F&page=1')
-    .then((ajaxResponse) => {
-      appState.products = ajaxResponse.data.products
-        .map((product) => {
-          return {
-            title: product.websiteDescription,
-            productId: product.productNumber,
-            src: 'https://assets.wehkamp.com/i/wehkamp/' + product.productNumber + '_pb_01/' + product.normalizedName + '.jpg?$product300x300$'
-          }
-        });
-      return appState;
-    });
+  return appState;
 }
 
 // TODO: Refactor.
 function renderPage(res, appState, path) {
   return new Promise((resolve, reject) => {
+    state.load(appState);
     const router = Router.create({
       routes,
       location: path,
@@ -53,7 +43,6 @@ function renderPage(res, appState, path) {
       }
     });
     router.run((Handler, routerState) => {
-      state.load(appState);
       const html = getPageHtml(Handler, appState);
       const notFound = routerState.routes.some(route => route.name === 'not-found');
       const status = notFound ? 404 : 200;
