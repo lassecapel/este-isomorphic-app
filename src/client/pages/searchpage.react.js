@@ -14,7 +14,7 @@ import {initStores} from '../../server/init-stores'
 export default
 class SearchPage extends React.Component {
   static willTransitionTo(transition, params, query, callback) {
-    initStores(query).then(callback, function() {console.log('fail', arguments)});
+    initStores(query).then(callback, callback);
   }
 
   render() {
