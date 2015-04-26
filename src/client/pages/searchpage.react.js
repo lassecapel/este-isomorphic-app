@@ -7,6 +7,7 @@ import {dispatchToken} from '../search/store';
 import {dispatchToken as productsDispatch}  from '../products/store';
 
 import ProductList from '../products/productlist.react';
+import Pagination from '../products/pagination.react';
 import {getProducts, init as initProductsStore} from '../products/store'
 import {getSearchQuery} from '../search/store'
 import {initStores} from '../../server/init-stores'
@@ -32,6 +33,7 @@ class SearchPage extends React.Component {
             <SearchBox query={getSearchQuery()}/>
           </section>
           <section>
+            <Pagination/>
             <ProductList products={getProducts()}/>
           </section>
         </div>

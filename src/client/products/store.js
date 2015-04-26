@@ -1,7 +1,7 @@
 import {searchForQuery} from '../search/actions';
 import {onProductsResponse, onServerProducts} from './actions';
 import {register, unregister} from '../dispatcher';
-import {state, productsCursor} from '../state';
+import {state, productsCursor, totalCursor} from '../state';
 import axios from 'axios';
 import {Record} from 'immutable';
 import {onInitStore} from '../../server/init-stores'
@@ -41,13 +41,18 @@ export const dispatchToken = register(({action, data}) => {
       requestProducts(query);
       break;
     case onProductsResponse:
-      const productsResponse = data;
-      const serverProducts = productsResponse.data.products;
+      const productsResponse = data.data;
+      const serverProducts = productsResponse.products;
       storeProductsInState(serverProducts);
+      totalCursor(() => productsResponse.total);
       break;
   }
 });
 
 export function getProducts() {
   return productsCursor();
+}
+
+export function getTotal() {
+  return totalCursor();
 }
