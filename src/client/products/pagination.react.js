@@ -24,9 +24,11 @@ class PaginationLinks extends PureComponent {
     const path = router.getCurrentPathname();
     const params = router.getCurrentParams();
     const query = router.getCurrentQuery();
-    query.page = page;
-    router.transitionTo(path, params, query);
-    searchForQuery(query);
+    if (query.page !== page) {
+      query.page = page;
+      router.transitionTo(path, params, query);
+      searchForQuery(query);
+    }
   }
 
   hrefForPage(page) {
