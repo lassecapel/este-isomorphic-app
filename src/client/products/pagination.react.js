@@ -1,7 +1,8 @@
 import React from 'react';
 import exposeRouter from '../components/exposerouter.react';
 import PureComponent from '../components/purecomponent.react';
-import {getTotal} from '../products/store'
+import {getTotal} from './store'
+import {searchForQuery} from '../search/actions';
 
 class Pagination extends React.Component {
   render() {
@@ -17,6 +18,17 @@ const steps = 10;
 const productPerPage = 48;
 
 class PaginationLinks extends PureComponent {
+  handleClick(e, page) {
+    e.preventDefault();
+    const router = this.props.router;
+    const path = router.getCurrentPathname();
+    const params = router.getCurrentParams();
+    const query = router.getCurrentQuery();
+    query.page = page;
+    router.transitionTo(path, params, query);
+    searchForQuery(query);
+  }
+
   hrefForPage(page) {
     const router = this.props.router;
     const path = router.getCurrentPathname();
@@ -25,6 +37,7 @@ class PaginationLinks extends PureComponent {
     query.page = page;
     return router.makeHref(path, params, query);
   }
+
   getPages(page, total) {
     const pages = [];
     for(var i = 1; i <= total; i++) {
@@ -43,7 +56,10 @@ class PaginationLinks extends PureComponent {
     const totalPages = Math.ceil(this.props.total / productPerPage);
     const page = this.props.page;
     return <div>{this.getPages(page, totalPages).map((page) =>
-    <a key={page} style={{paddingLeft: '1em', paddingRight: '1em'}}href={this.hrefForPage(page)}>{page}</a>
+        <a key={page}
+           style={{paddingLeft: '1em', paddingRight: '1em'}}
+           href={this.hrefForPage(page)}
+           onClick={(e) => this.handleClick(e,page)}>{page}</a>
     )}</div>;
   }
 }

@@ -19,7 +19,6 @@ class SearchBox extends PureComponent {
       router.transitionTo(path, params, query);
       searchForQuery(query);
     }
-    return false;
   }
 
   render() {
