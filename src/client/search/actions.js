@@ -2,7 +2,7 @@ import setToString from '../../lib/settostring';
 import {dispatch} from '../dispatcher';
 
 export function searchForQuery(query) {
-    query = query.trim();
+    query.q = query.q.trim();
     if (!query) return;
     dispatch(searchForQuery, query);
 }

@@ -12,7 +12,7 @@ class Pagination extends React.Component {
 }
 
 
-const pagesAround = 4;
+const pagesAround = 5;
 const steps = 10;
 const productPerPage = 48;
 
@@ -43,7 +43,7 @@ class PaginationLinks extends PureComponent {
     const totalPages = Math.ceil(this.props.total / productPerPage);
     const page = this.props.page;
     return <div>{this.getPages(page, totalPages).map((page) =>
-    <a style={{paddingLeft: '1em', paddingRight: '1em'}}href={this.hrefForPage(page)}>{page}</a>
+    <a key={page} style={{paddingLeft: '1em', paddingRight: '1em'}}href={this.hrefForPage(page)}>{page}</a>
     )}</div>;
   }
 }

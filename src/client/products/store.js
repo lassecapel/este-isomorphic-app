@@ -30,8 +30,8 @@ function storeProductsInState(serverProducts) {
 }
 
 function requestProducts(query) {
-  onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query).catch(() => {
-    console.log('errror', arguments)
+  onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page).catch(() => {
+    console.log('error', arguments)
   }));
 }
 export const dispatchToken = register(({action, data}) => {

@@ -12,9 +12,13 @@ class SearchBox extends PureComponent {
     const path = router.getCurrentPathname();
     const params = router.getCurrentParams();
     const query = router.getCurrentQuery();
-    query.q = document.forms.searchForm.q.value;
-    router.transitionTo(path, params, query);
-    searchForQuery(query.q);
+    var inputValue = document.forms.searchForm.q.value;
+    if (query.q !== inputValue) {
+      query.q = inputValue;
+      query.page = 1;
+      router.transitionTo(path, params, query);
+      searchForQuery(query);
+    }
     return false;
   }
 

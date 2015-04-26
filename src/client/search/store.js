@@ -8,7 +8,7 @@ export const dispatchToken = register(({action, data}) => {
   switch (action) {
     case searchForQuery:
       searchCursor(q => {
-        return q.set('query', data)
+        return q.set('query', data.q).set('page', data.page);
       });
       break;
   }

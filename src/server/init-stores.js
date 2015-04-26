@@ -21,7 +21,7 @@ export function initStores(query) {
       resolve();
     } else {
       waitForProductsResponse(resolve);
-      searchForQuery(query.q);
+      searchForQuery(query);
     }
   });
 }
