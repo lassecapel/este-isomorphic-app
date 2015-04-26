@@ -17,7 +17,8 @@ class SearchPage extends React.Component {
     const timeout = setTimeout(() =>  callback(new Error('timeout transitionto')), 1000);
     initStores(query)
       .then(() => clearTimeout(timeout))
-      .then(callback, callback);
+      .then(callback)
+      .catch(callback);
   }
 
   render() {
