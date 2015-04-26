@@ -1,11 +1,12 @@
 import React from 'react';
 import immutable from 'immutable';
+import PureComponent from '../components/purecomponent.react';
 
 // Leverage webpack require goodness for feature toggle based dead code removal.
 // require('./app.styl');
 
 export default
-class ProductList extends React.Component {
+class ProductList extends PureComponent {
   render() {
     return (
       <div>
@@ -23,7 +24,7 @@ class ProductList extends React.Component {
 }
 
 
-class ProductImage extends React.Component {
+class ProductImage extends PureComponent {
   render() {
     return (
       <img src={this.props.src} alt={this.props.title}/>
