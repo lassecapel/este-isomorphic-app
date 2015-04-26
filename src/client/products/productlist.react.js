@@ -1,9 +1,5 @@
 import React from 'react';
-import immutable from 'immutable';
 import PureComponent from '../components/purecomponent.react';
-
-// Leverage webpack require goodness for feature toggle based dead code removal.
-// require('./app.styl');
 
 export default
 class ProductList extends PureComponent {
