@@ -17,7 +17,6 @@ class SearchBox extends PureComponent {
       query.q = inputValue;
       query.page = 1;
       router.transitionTo(path, params, query);
-      searchForQuery(query);
     }
   }
 
@@ -32,7 +31,7 @@ class SearchBox extends PureComponent {
           placeholder={msg('search.placeholder')}
           defaultValue={this.props.query}
           />
-
+          <input type='hidden' name='page' value='1' />
         <p>Searched for {this.props.query}</p>
         </div>
       </form>
