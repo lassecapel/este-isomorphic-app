@@ -15,14 +15,18 @@ import {initStores} from '../../server/init-stores'
 export default
 class SearchPage extends React.Component {
   static willTransitionTo(transition, params, query, callback) {
-    if (query.q && getSearchQuery() !== query.q) {
-      searchForQuery(query);
+    if (query.q) {
+      if (getSearchQuery() !== query.q) {
+        searchForQuery(query);
+      }
+      const timeout = setTimeout(() =>  callback(new Error('timeout transitionto')), 1000);
+      initStores(query)
+        .then(() => clearTimeout(timeout))
+        .then(callback)
+        .catch(callback);
+    } else {
+      callback();
     }
-    const timeout = setTimeout(() =>  callback(new Error('timeout transitionto')), 1000);
-    initStores(query)
-      .then(() => clearTimeout(timeout))
-      .then(callback)
-      .catch(callback);
   }
 
   render() {
