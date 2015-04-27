@@ -15,13 +15,12 @@ function waitForProductsResponse(resolve) {
   });
 }
 
-export function initStores(query) {
+export function initStores() {
   return new Promise((resolve, reject) => {
-    if (initCursor() || !query.q) {
+    if (initCursor()) {
       resolve();
     } else {
       waitForProductsResponse(resolve);
-      searchForQuery(query);
     }
   });
 }
