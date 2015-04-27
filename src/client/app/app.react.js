@@ -4,9 +4,6 @@ import {Link, RouteHandler} from 'react-router';
 import {isLoggedIn} from '../user/store';
 import {state} from '../state';
 
-// Leverage webpack require goodness for feature toggle based dead code removal.
-require('./app.styl');
-
 export default class App extends React.Component {
 
   componentDidMount() {
@@ -29,16 +26,13 @@ export default class App extends React.Component {
   render() {
     return (
       <DocumentTitle title='Este.js App'>
-        <div className="page">
-          <header>
-            <h1>
-              <a href="https://github.com/steida/este">Este.js</a> App
-            </h1>
-            <ul>
-              <li><Link to="search">Search</Link></li>
+        <div className='container-fluid'>
+          <div className='row'>
+            <ul className='nav nav-tab'>
+              <li role="presentation" className='active'><Link to="search">Search</Link></li>
             </ul>
-          </header>
-          <RouteHandler />
+          </div>
+          <RouteHandler/>
           <footer>
             <p>
               made by Web Technology Innovation Squad

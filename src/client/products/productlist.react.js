@@ -19,7 +19,7 @@ class ProductList extends PureComponent {
 class ProductTile extends PureComponent {
   render() {
     return (
-      <div style={{float:"left"}}>
+      <div style={{textAlign: 'center'}} className='col-xs-6 col-sm-4 col-md-3 col-lg-3'>
         <div>{this.props.product.get('title')}</div>
         <div><ProductImage src={this.props.product.get('src')} title={this.props.product.get('title')}/></div>
       </div>

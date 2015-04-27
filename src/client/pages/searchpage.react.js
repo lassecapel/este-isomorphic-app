@@ -25,17 +25,15 @@ class SearchPage extends React.Component {
   render() {
     return (
       <DocumentTitle title='Dames Mode Shopper'>
-        <div className="page">
-          <header>
+        <div>
+          <div className='row'>
             <h1>Search page</h1>
-          </header>
-          <section>
             <SearchBox query={getSearchQuery()}/>
-          </section>
-          <section>
+          </div>
+          <div>
             <Pagination/>
             <ProductList products={getProducts()}/>
-          </section>
+          </div>
         </div>
       </DocumentTitle>
     );

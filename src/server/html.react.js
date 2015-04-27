@@ -23,6 +23,7 @@ export default class Html extends PureComponent {
           <meta charSet="utf-8" />
           <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
           <title>{this.props.title}</title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
           {linkStyles}
           {linkFavicon}
         </head>

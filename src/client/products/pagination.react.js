@@ -57,12 +57,15 @@ class PaginationLinks extends PureComponent {
   render() {
     const totalPages = Math.ceil(this.props.total / productPerPage);
     const page = this.props.page;
-    return <div>{this.getPages(page, totalPages).map((page) =>
-        <a key={page}
-           style={{paddingLeft: '1em', paddingRight: '1em'}}
-           href={this.hrefForPage(page)}
-           onClick={(e) => this.handleClick(e,page)}>{page}</a>
-    )}</div>;
+    return <div style={{textAlign: 'center'}}>
+      <ul className="pagination">{this.getPages(page, totalPages).map((page) =>
+          <li className={page === this.props.page && 'active' || ''}>
+            <a key={page}
+               href={this.hrefForPage(page)}
+               onClick={(e) => this.handleClick(e,page)}>{page}</a>
+          </li>
+      )}</ul>
+    </div>;
   }
 }
 
