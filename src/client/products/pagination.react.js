@@ -35,7 +35,7 @@ class PaginationLinks extends PureComponent {
     const router = this.props.router;
     const path = router.getCurrentPathname();
     const params = router.getCurrentParams();
-    const query = router.getCurrentQuery();
+    const query = Array.prototype.slice(router.getCurrentQuery());
     query.page = page;
     return router.makeHref(path, params, query);
   }
