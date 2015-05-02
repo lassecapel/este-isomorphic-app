@@ -67,9 +67,9 @@ module.exports = function(isDevelopment) {
       }, {
         exclude: /node_modules/,
         loaders: isDevelopment ? [
-          'react-hot', 'babel-loader'
+          'react-hot', 'babel-loader?optional=runtime'
         ] : [
-          'babel-loader'
+          'babel-loader?optional=runtime'
         ],
         test: /\.js$/
       }].concat(stylesLoaders())

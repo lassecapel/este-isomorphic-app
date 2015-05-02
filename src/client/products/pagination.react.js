@@ -27,7 +27,6 @@ class PaginationLinks extends PureComponent {
     if (query.page !== page) {
       query.page = page;
       router.transitionTo(path, params, query);
-      searchForQuery(query);
     }
   }
 

@@ -4,7 +4,6 @@ import {register, unregister} from '../dispatcher';
 import {state, productsCursor, totalCursor} from '../state';
 import axios from 'axios';
 import {Record} from 'immutable';
-import {onInitStore} from '../../server/init-stores'
 
 // Isomorphic store has to be state-less.
 const Product = Record({
@@ -29,16 +28,13 @@ function storeProductsInState(serverProducts) {
   });
 }
 
-function requestProducts(query) {
-  onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page).catch(() => {
-    console.log('error', arguments)
-  }));
-}
 export const dispatchToken = register(({action, data}) => {
   switch (action) {
     case searchForQuery:
       const query = data;
-      requestProducts(query);
+      onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page).catch(() => {
+        console.log('error', arguments)
+      }));
       break;
     case onProductsResponse:
       const productsResponse = data.data;

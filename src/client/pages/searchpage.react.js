@@ -1,29 +1,42 @@
 import React from 'react';
-import DocumentTitle from 'react-document-title';
+import {register, unregister} from '../dispatcher';
 
+
+import DocumentTitle from 'react-document-title';
 import SearchBox from '../search/searchbox.react';
 
-import {dispatchToken, getSearchQuery} from '../search/store';
+import {dispatchToken, getSearchQuery, getSearchPage} from '../search/store';
 import {dispatchToken as productsDispatch}  from '../products/store';
+import {initCursor} from '../state'
 import {searchForQuery}  from '../search/actions';
+import {onProductsResponse} from '../products/actions';
 
 import ProductList from '../products/productlist.react';
 import Pagination from '../products/pagination.react';
 import {getProducts, init as initProductsStore} from '../products/store'
-import {initStores} from '../../server/init-stores'
 
 export default
 class SearchPage extends React.Component {
   static willTransitionTo(transition, params, query, callback) {
     if (query.q) {
-      if (getSearchQuery() !== query.q) {
-        searchForQuery(query);
+      searchForQuery(query);
+      if (!initCursor()) {
+        const timeout = setTimeout(() =>  callback(new Error('timeout transitionto')), 1000);
+        console.log('going to wait for store init');
+        const id = register(({action}) => {
+          switch (action) {
+            case onProductsResponse:
+              unregister(id);
+              clearTimeout(timeout);
+              initCursor(() => true);
+              console.log('stopping waiting for products');
+              callback();
+              break;
+          }
+        });
+      } else {
+        callback();
       }
-      const timeout = setTimeout(() =>  callback(new Error('timeout transitionto')), 1000);
-      initStores(query)
-        .then(() => clearTimeout(timeout))
-        .then(callback)
-        .catch(callback);
     } else {
       callback();
     }
