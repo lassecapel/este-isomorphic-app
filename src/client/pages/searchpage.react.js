@@ -15,10 +15,14 @@ import ProductList from '../products/productlist.react';
 import Pagination from '../products/pagination.react';
 import {getProducts, init as initProductsStore} from '../products/store'
 
+function isNewSearch(query) {
+  return query.q !== getSearchQuery() || query.page !== getSearchPage();
+}
+
 export default
 class SearchPage extends React.Component {
   static willTransitionTo(transition, params, query, callback) {
-    if (query.q) {
+    if (isNewSearch(query)) {
       searchForQuery(query);
       if (!initCursor()) {
         const timeout = setTimeout(() =>  callback(new Error('timeout transitionto')), 1000);
