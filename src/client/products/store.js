@@ -29,18 +29,39 @@ function storeProductsInState(serverProducts) {
 }
 
 export const dispatchToken = register(({action, data}) => {
+  const {resolve, reject} = data;
   switch (action) {
     case searchForQuery:
-      const query = data;
-      onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page).catch(() => {
-        console.log('error', arguments)
-      }));
+      const {query} = data;
+      if (query.q) {
+        onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page)
+          .then((response) => {
+            return {
+              response: response,
+              resolve: resolve,
+              reject: reject
+            };
+          })
+        .catch(reject));
+      } else {
+        setTimeout(() =>
+          onProductsResponse({
+            resolve: resolve,
+            reject: reject
+          }));
+      }
       break;
     case onProductsResponse:
-      const productsResponse = data.data;
-      const serverProducts = productsResponse.products;
-      storeProductsInState(serverProducts);
-      totalCursor(() => productsResponse.total);
+      const {response} = data;
+      if (response && response.data) {
+        const productsResponse = response.data;
+        storeProductsInState(productsResponse.products);
+        totalCursor(() => productsResponse.total);
+      } else {
+        storeProductsInState([]);
+        totalCursor(() => 0);
+      }
+      resolve();
       break;
   }
 });
