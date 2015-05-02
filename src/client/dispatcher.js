@@ -10,10 +10,6 @@ export function register(callback: Function): string {
   return dispatcher.register(callback);
 }
 
-export function unregister(id: string) {
-  return dispatcher.unregister(id);
-}
-
 export function dispatch(action: Function, data: ?Object, options: ?Object) {
   if (isDev && action.toString === Function.prototype.toString)
     throw new Error(`Action ${action} toString method has to be overridden by setToString.`);

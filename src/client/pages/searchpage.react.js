@@ -1,5 +1,5 @@
 import React from 'react';
-import {register, unregister} from '../dispatcher';
+import {register} from '../dispatcher';
 
 
 import DocumentTitle from 'react-document-title';
@@ -23,10 +23,9 @@ class SearchPage extends React.Component {
       if (!initCursor()) {
         const timeout = setTimeout(() =>  callback(new Error('timeout transitionto')), 1000);
         console.log('going to wait for store init');
-        const id = register(({action}) => {
+        register(({action}) => {
           switch (action) {
             case onProductsResponse:
-              unregister(id);
               clearTimeout(timeout);
               initCursor(() => true);
               console.log('stopping waiting for products');
