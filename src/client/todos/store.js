@@ -12,7 +12,7 @@ const TodoItem = Record({
 });
 
 export const dispatchToken = register(({action, data}) => {
-    switch (action) {
+  switch (action) {
     case actions.onNewTodoFieldChange:
       newTodoCursor(todo => {
         // Use destructuring assignment. It's explicit.
@@ -49,7 +49,7 @@ export const dispatchToken = register(({action, data}) => {
     case actions.addHundredTodos:
       todosCursor(todos => {
         return todos.withMutations(list => {
-          Range(0, 100).forEach(i => {
+          Range(0, 100).forEach(() => {
             const id = getRandomString();
             list.push(new TodoItem({
               id: id,

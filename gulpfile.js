@@ -36,8 +36,7 @@ gulp.task('eslint', function() {
       'webpack/*.js'
     ])
     .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failOnError());
+    .pipe(eslint.format());
 });
 
 gulp.task('jest', function(done) {

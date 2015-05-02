@@ -20,7 +20,7 @@ export default function() {
 
   app.use('/nlbe/api', proxy('https://www.wehkamp.com', {
     filter: function(req) {
-      return req.method == 'GET';
+      return req.method === 'GET';
     },
     forwardPath: function(req) {
       return req.originalUrl;

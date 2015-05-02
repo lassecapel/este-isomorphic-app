@@ -1,5 +1,4 @@
 import DocumentTitle from 'react-document-title';
-import axios from 'axios';
 import Html from './html.react';
 import Promise from 'bluebird';
 import React from 'react';
@@ -45,11 +44,11 @@ function renderPage(res, path) {
 
 function getPageHtml(Handler, appState) {
   const appHtml = `<div id="app">${React.renderToString(<Handler />)}</div>`;
-    const appScriptSrc = config.isProduction
+  const appScriptSrc = config.isProduction
     ? '/build/app.js?v=' + config.version
     : '//localhost:8888/build/app.js';
 
-    let scriptHtml = `
+  let scriptHtml = `
     <script>
     (function() {
     window._appState = ${JSON.stringify(appState)};
@@ -62,7 +61,7 @@ function getPageHtml(Handler, appState) {
   })();
     </script>`;
 
-    if (config.isProduction && config.googleAnalyticsId !== 'UA-XXXXXXX-X')
+  if (config.isProduction && config.googleAnalyticsId !== 'UA-XXXXXXX-X')
     scriptHtml += `
     <script>
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject = l;b[l]||(b[l]=
@@ -73,14 +72,14 @@ function getPageHtml(Handler, appState) {
     ga('create','${config.googleAnalyticsId}');ga('send','pageview');
     </script>`;
 
-    const title = DocumentTitle.rewind();
+  const title = DocumentTitle.rewind();
 
-    return '<!DOCTYPE html>' + React.renderToStaticMarkup(
-    <Html
-    bodyHtml={appHtml + scriptHtml}
-    isProduction={config.isProduction}
-    title={title}
-    version={config.version}
-    />
+  return '<!DOCTYPE html>' + React.renderToStaticMarkup(
+      <Html
+        bodyHtml={appHtml + scriptHtml}
+        isProduction={config.isProduction}
+        title={title}
+        version={config.version}
+        />
     );
-    }
+}
