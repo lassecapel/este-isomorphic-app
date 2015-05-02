@@ -58,9 +58,8 @@ class PaginationLinks extends PureComponent {
     const page = this.props.page;
     return <div style={{textAlign: 'center'}}>
       <ul className="pagination">{this.getPages(page, totalPages).map((page) =>
-          <li className={page === this.props.page && 'active' || ''}>
-            <a key={page}
-               href={this.hrefForPage(page)}
+          <li key={page} className={page === this.props.page && 'active' || ''}>
+            <a href={this.hrefForPage(page)}
                onClick={(e) => this.handleClick(e,page)}>{page}</a>
           </li>
       )}</ul>
