@@ -13,6 +13,13 @@ var webpackBuild = require('./webpack/build');
 var webpackDevServer = require('./webpack/devserver');
 var yargs = require('yargs');
 
+var jestConfig = {
+  'rootDir': './src',
+  'scriptPreprocessor': '../node_modules/babel-jest',
+  'testFileExtensions': ['es6', 'js'],
+  'moduleFileExtensions': ['js', 'json', 'es6']
+};
+
 // Enables node's --harmony flag programmatically for jest.
 harmonize();
 
@@ -40,13 +47,7 @@ gulp.task('eslint', function() {
 });
 
 gulp.task('jest', function(done) {
-  var rootDir = './src';
-  jest.runCLI({config: {
-    'rootDir': rootDir,
-    'scriptPreprocessor': '../node_modules/babel-jest',
-    'testFileExtensions': ['es6', 'js'],
-    'moduleFileExtensions': ['js', 'json', 'es6']
-  }}, rootDir, function(success) {
+  jest.runCLI({config: jestConfig}, jestConfig.rootDir, function(success) {
     /* eslint no-process-exit:0 */
     done(success ? null : 'jest failed');
     process.on('exit', function() {
@@ -61,6 +62,12 @@ gulp.task('test', function(done) {
   // Gulp deps aren't helpful, because we want to run tasks without deps as well.
   runSequence('eslint', 'jest', 'build-webpack-production', done);
 });
+
+gulp.task('jest-watch', function() {
+  gulp.watch([jestConfig.rootDir + '/**/*.js'], ['jest']);
+});
+
+gulp.task('tdd', ['jest', 'jest-watch']);
 
 gulp.task('server', ['env', 'build'], bg('node', 'src/server'));
 
