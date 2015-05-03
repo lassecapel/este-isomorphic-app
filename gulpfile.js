@@ -67,7 +67,9 @@ gulp.task('jest-watch', function() {
   gulp.watch([jestConfig.rootDir + '/**/*.js'], ['jest']);
 });
 
-gulp.task('tdd', ['jest', 'jest-watch']);
+gulp.task('tdd', function() {
+  runSequence('jest', 'jest-watch');
+});
 
 gulp.task('server', ['env', 'build'], bg('node', 'src/server'));
 
