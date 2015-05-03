@@ -13,7 +13,6 @@ class ProductList extends PureComponent {
       </div>
     );
   }
-
 }
 
 class ProductTile extends PureComponent {

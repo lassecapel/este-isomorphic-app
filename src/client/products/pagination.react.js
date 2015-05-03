@@ -1,8 +1,7 @@
 import React from 'react';
 import exposeRouter from '../components/exposerouter.react';
 import PureComponent from '../components/purecomponent.react';
-import {getTotal} from './store'
-import {searchForQuery} from '../search/actions';
+import {getTotal} from './store';
 
 class Pagination extends React.Component {
   render() {

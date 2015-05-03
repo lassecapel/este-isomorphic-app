@@ -29,10 +29,9 @@ function storeProductsInState(serverProducts) {
 }
 
 export const dispatchToken = register(({action, data}) => {
-  const {resolve, reject} = data;
   switch (action) {
     case searchForQuery:
-      const {query} = data;
+      const {resolve, reject, query} = data;
       if (query.q) {
         onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page)
           .then((response) => {
@@ -50,7 +49,7 @@ export const dispatchToken = register(({action, data}) => {
       }
       break;
     case onProductsResponse:
-      const {response} = data;
+      const {response, resolve} = data;
       if (response && response.data) {
         const productsResponse = response.data;
         storeProductsInState(productsResponse.products);
