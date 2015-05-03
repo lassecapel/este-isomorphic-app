@@ -11,7 +11,7 @@ export default class NotFound extends React.Component {
         <div>
           <h1>{msg('notFound.header')}</h1>
           <p>{msg('notFound.message')}</p>
-          <Link to="home">{msg('notFound.continueMessage')}</Link>
+          <Link to="search">{msg('notFound.continueMessage')}</Link>
         </div>
       </DocumentTitle>
     );

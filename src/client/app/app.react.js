@@ -1,7 +1,6 @@
 import DocumentTitle from 'react-document-title';
 import React from 'react';
 import {Link, RouteHandler} from 'react-router';
-import {isLoggedIn} from '../user/store';
 import {state} from '../state';
 
 export default class App extends React.Component {
@@ -28,8 +27,9 @@ export default class App extends React.Component {
       <DocumentTitle title='Este.js App'>
         <div className='container-fluid'>
           <div className='row'>
-            <ul className='nav nav-tab'>
+            <ul className='nav nav-tabs'>
               <li role="presentation" className='active'><Link to="search">Search</Link></li>
+              <li role="presentation"><Link to="todos">Todo's</Link></li>
             </ul>
           </div>
           <RouteHandler/>
