@@ -8,8 +8,8 @@ import {Record} from 'immutable';
 // Isomorphic store has to be state-less.
 const Product = Record({
   title: '',
-  productId: '',
-  src: ''
+  productNumber: '',
+  normalizedName: ''
 });
 
 
@@ -20,8 +20,8 @@ function storeProductsInState(serverProducts) {
       serverProducts.forEach((serverProduct) => {
         list.push(new Product({
           title: serverProduct.websiteDescription,
-          productId: serverProduct.productNumber,
-          src: 'https://assets.wehkamp.com/i/wehkamp/' + serverProduct.productNumber + '_pb_01/' + serverProduct.normalizedName + '.jpg?$product300x300$'
+          productNumber: serverProduct.productNumber,
+          normalizedName: serverProduct.normalizedName
         }));
       });
     });
