@@ -34,20 +34,18 @@ export const dispatchToken = register(({action, data}) => {
     case searchForQuery:
       const {query} = data;
       if (query.q) {
-        onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page)
+        onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page))
           .then((response) => {
             return {
               response: response,
-              resolve: resolve,
-              reject: reject
+              resolve: resolve
             };
           })
-        .catch(reject));
+        .catch(reject);
       } else {
         setTimeout(() =>
           onProductsResponse({
-            resolve: resolve,
-            reject: reject
+            resolve: resolve
           }));
       }
       break;

@@ -2,7 +2,7 @@ import {dispatch} from '../dispatcher';
 import setToString from '../../lib/settostring';
 
 export function onProductsResponse(responseData) {
-  dispatch(onProductsResponse, responseData);
+  return dispatch(onProductsResponse, responseData);
 }
 
 export function onServerProducts(products) {

@@ -8,8 +8,7 @@ export function searchForQuery(query) {
       resolve: resolve,
       reject: reject
     });
-
-  }).catch((e) => {console.error('Error', searchForQuery, e);});
+  }).catch((e) => {console.error('Error', searchForQuery, e); throw e});
 }
 
 // Override actions toString for logging.
