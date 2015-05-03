@@ -50,7 +50,7 @@ export default {
       continueMessage: 'Continue here please.'
     },
     search: {
-      "placeholder": "Search"
+      placeholder: 'Search'
     }
   }
 };

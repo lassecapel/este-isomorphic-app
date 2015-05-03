@@ -2,8 +2,9 @@ import DocumentTitle from 'react-document-title';
 import React from 'react';
 import {Link, RouteHandler} from 'react-router';
 import {state} from '../state';
+import exposeRouter from '../components/exposerouter.react';
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   componentDidMount() {
     // Must be required here because there is no DOM in Node.js. Remember,
@@ -23,13 +24,14 @@ export default class App extends React.Component {
   }
 
   render() {
+    const isActive = this.props.router.isActive;
     return (
       <DocumentTitle title='Este.js App'>
         <div className='container-fluid'>
           <div className='row'>
             <ul className='nav nav-tabs'>
-              <li role="presentation" className='active'><Link to="search">Search</Link></li>
-              <li role="presentation"><Link to="todos">Todo's</Link></li>
+              <li role="presentation" className={isActive('search') ? 'active' : null}><Link to="search">Search</Link></li>
+              <li role="presentation" className={isActive('todos') ? 'active' : null}><Link to="todos">Todo's</Link></li>
             </ul>
           </div>
           <RouteHandler/>
@@ -44,3 +46,9 @@ export default class App extends React.Component {
   }
 
 }
+
+App.propTypes = {
+  router: React.PropTypes.func.isRequired
+};
+
+export default exposeRouter(App);
