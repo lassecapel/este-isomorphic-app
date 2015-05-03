@@ -32,22 +32,15 @@ export const dispatchToken = register(({action, data}) => {
   switch (action) {
     case searchForQuery:
       const {query} = data;
-      if (query.q) {
-        onProductsResponse(
-          axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page)
-            .then((response) => {
-              return {
-                response: response,
-                resolve: data.resolve
-              };
-            }))
-          .catch(data.reject);
-      } else {
-        setTimeout(() =>
-          onProductsResponse({
-            resolve: data.resolve
-          }));
-      }
+      onProductsResponse(
+        axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page)
+          .then((response) => {
+            return {
+              response: response,
+              resolve: data.resolve
+            };
+          }))
+        .catch(data.reject);
       break;
     case onProductsResponse:
       const {response} = data;
