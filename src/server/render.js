@@ -8,7 +8,6 @@ import initialState from './initialstate';
 import routes from '../client/routes';
 import {state} from '../client/state';
 
-
 export default function render(req, res, locale) {
   const url = req.originalUrl;
   return renderPage(res, url);
@@ -50,36 +49,36 @@ function getPageHtml(Handler, appState) {
 
   let scriptHtml = `
     <script>
-    (function() {
-    window._appState = ${JSON.stringify(appState)};
-    var app = document.createElement('script'); app.type = 'text/javascript'; app.async = true;
-    var src = '${appScriptSrc}';
-    // IE<11 and Safari need Intl polyfill.
-    if (!window.Intl) src = src.replace('.js', 'intl.js');
-    app.src = src;
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(app, s);
-  })();
+      (function() {
+        window._appState = ${JSON.stringify(appState)};
+        var app = document.createElement('script'); app.type = 'text/javascript'; app.async = true;
+        var src = '${appScriptSrc}';
+        // IE<11 and Safari need Intl polyfill.
+        if (!window.Intl) src = src.replace('.js', 'intl.js');
+        app.src = src;
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(app, s);
+      })();
     </script>`;
 
   if (config.isProduction && config.googleAnalyticsId !== 'UA-XXXXXXX-X')
     scriptHtml += `
-    <script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject = l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','${config.googleAnalyticsId}');ga('send','pageview');
-    </script>`;
+      <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','${config.googleAnalyticsId}');ga('send','pageview');
+      </script>`;
 
   const title = DocumentTitle.rewind();
 
   return '<!DOCTYPE html>' + React.renderToStaticMarkup(
-      <Html
-        bodyHtml={appHtml + scriptHtml}
-        isProduction={config.isProduction}
-        title={title}
-        version={config.version}
-        />
-    );
+    <Html
+      bodyHtml={appHtml + scriptHtml}
+      isProduction={config.isProduction}
+      title={title}
+      version={config.version}
+    />
+  );
 }
