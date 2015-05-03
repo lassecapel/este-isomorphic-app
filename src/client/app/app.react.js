@@ -27,7 +27,7 @@ class App extends React.Component {
     const isActive = this.props.router.isActive;
     return (
       <DocumentTitle title='Este.js App'>
-        <div className='container-fluid'>
+        <div className='container'>
           <div className='row'>
             <ul className='nav nav-tabs'>
               <li role="presentation" className={isActive('search') ? 'active' : null}><Link to="search">Search</Link></li>
@@ -35,7 +35,7 @@ class App extends React.Component {
             </ul>
           </div>
           <RouteHandler/>
-          <footer>
+          <footer className='row'>
             <p>
               made by Web Technology Innovation Squad
             </p>

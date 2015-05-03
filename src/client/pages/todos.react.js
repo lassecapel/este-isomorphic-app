@@ -70,7 +70,8 @@ export default class Todos extends React.Component {
 
     return (
       <DocumentTitle title={msg('todos.title')}>
-        <section className="todos">
+        <div className="todos">
+          <h1>Todo List</h1>
           <NewTodo todo={newTodo} />
           <TodoList todos={todos} />
           <div className="buttons">
@@ -91,7 +92,7 @@ export default class Todos extends React.Component {
               steps={undoStates.length - 1}
             /></button>
           </div>
-        </section>
+        </div>
       </DocumentTitle>
     );
   }
