@@ -31,25 +31,26 @@ function storeProductsInState(serverProducts) {
 export const dispatchToken = register(({action, data}) => {
   switch (action) {
     case searchForQuery:
-      const {resolve, reject, query} = data;
+      const {query} = data;
       if (query.q) {
-        onProductsResponse(axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page)
-          .then((response) => {
-            return {
-              response: response,
-              resolve: resolve
-            };
-          }))
-          .catch(reject);
+        onProductsResponse(
+          axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page)
+            .then((response) => {
+              return {
+                response: response,
+                resolve: data.resolve
+              };
+            }))
+          .catch(data.reject);
       } else {
         setTimeout(() =>
           onProductsResponse({
-            resolve: resolve
+            resolve: data.resolve
           }));
       }
       break;
     case onProductsResponse:
-      const {response, resolve} = data;
+      const {response} = data;
       if (response && response.data) {
         const productsResponse = response.data;
         storeProductsInState(productsResponse.products);
@@ -58,7 +59,7 @@ export const dispatchToken = register(({action, data}) => {
         storeProductsInState([]);
         totalCursor(() => 0);
       }
-      resolve();
+      data.resolve();
       break;
   }
 });
