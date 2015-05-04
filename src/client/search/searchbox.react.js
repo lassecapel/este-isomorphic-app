@@ -7,14 +7,12 @@ class SearchBox extends PureComponent {
   handleSubmit(e) {
     e.preventDefault();
     const router = this.props.router;
-    const path = router.getCurrentPathname();
-    const params = router.getCurrentParams();
     const query = router.getCurrentQuery();
     var inputValue = document.forms.searchForm.q.value;
     if (query.q !== inputValue) {
       query.q = inputValue;
       query.page = 1;
-      router.transitionTo(path, params, query);
+      router.transitionTo(router.getCurrentPathname(), router.getCurrentParams(), query);
     }
   }
 
@@ -36,5 +34,10 @@ class SearchBox extends PureComponent {
     );
   }
 }
+
+SearchBox.propTypes = {
+  router: React.PropTypes.func.isRequired,
+  query: React.PropTypes.string
+};
 
 export default exposeRouter(SearchBox);
