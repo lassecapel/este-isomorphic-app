@@ -33,7 +33,7 @@ class ProductTile extends PureComponent {
 class ProductImage extends PureComponent {
   render() {
     return (
-      <img src={this.props.src} alt={this.props.title}/>
+      <img className='img-responsive' src={this.props.src} alt={this.props.title}/>
     );
   }
 }
