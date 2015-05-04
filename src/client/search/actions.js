@@ -1,21 +1,23 @@
 import setToString from '../../lib/settostring';
 import {dispatch} from '../dispatcher';
 import {onProductsResponse} from '../products/actions';
+import axios from 'axios';
 
 export function searchForQuery(query) {
   return new Promise((resolve, reject) => {
+    dispatch(searchForQuery, query);
     if (query.q) {
-      dispatch(searchForQuery, {
-        query: query,
-        resolve: resolve,
-        reject: reject
-      });
+      onProductsResponse(
+        axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page)
+      )
+        .then(resolve)
+        .catch(reject);
     } else {
-      onProductsResponse({
-        resolve: resolve
-      });
+      onProductsResponse();
+      resolve();
     }
-  }).catch((e) => {
+  })
+    .catch((e) => {
       console.error('Error', searchForQuery, e);
       throw e;
     });

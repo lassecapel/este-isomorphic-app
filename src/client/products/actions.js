@@ -6,12 +6,7 @@ export function onProductsResponse(responsePromise) {
   return dispatch(onProductsResponse, responsePromise);
 }
 
-export function onServerProducts(products) {
-  dispatch(onServerProducts, products);
-}
-
 // Override actions toString for logging.
 setToString('products', {
-  onProductsResponse,
-  onServerProducts
+  onProductsResponse
 });

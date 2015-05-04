@@ -5,9 +5,9 @@ import {searchCursor} from '../state';
 export const dispatchToken = register(({action, data}) => {
   switch (action) {
     case searchForQuery:
-      searchCursor(q => {
-        const {query} = data;
-        return q.set('query', query.q).set('page', query.page);
+      searchCursor(searchData => {
+        const {q, page} = data;
+        return searchData.set('query', q).set('page', page);
       });
       break;
   }

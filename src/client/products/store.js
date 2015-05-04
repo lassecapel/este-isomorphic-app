@@ -1,8 +1,6 @@
-import {searchForQuery} from '../search/actions';
-import {onProductsResponse, onServerProducts} from './actions';
-import {register, unregister} from '../dispatcher';
-import {state, productsCursor, totalCursor} from '../state';
-import axios from 'axios';
+import {onProductsResponse} from './actions';
+import {register} from '../dispatcher';
+import {productsCursor, totalCursor} from '../state';
 import {Record} from 'immutable';
 
 // Isomorphic store has to be state-less.
@@ -30,29 +28,15 @@ function storeProductsInState(serverProducts) {
 
 export const dispatchToken = register(({action, data}) => {
   switch (action) {
-    case searchForQuery:
-      const {query} = data;
-      onProductsResponse(
-        axios.get('http://localhost:8000/nlbe/api/products?q=' + query.q + '&page=' + query.page)
-          .then((response) => {
-            return {
-              response: response,
-              resolve: data.resolve
-            };
-          }))
-        .catch(data.reject);
-      break;
     case onProductsResponse:
-      const {response} = data;
-      if (response && response.data) {
-        const productsResponse = response.data;
+      if (data) {
+        const productsResponse = data.data;
         storeProductsInState(productsResponse.products);
         totalCursor(() => productsResponse.total);
       } else {
         storeProductsInState([]);
         totalCursor(() => 0);
       }
-      data.resolve();
       break;
   }
 });
