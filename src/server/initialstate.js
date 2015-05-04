@@ -31,6 +31,5 @@ export default {
     authData: null
   },
   search: {
-  },
-  init: false
+  }
 };

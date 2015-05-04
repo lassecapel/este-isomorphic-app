@@ -14,4 +14,3 @@ export const userCursor = state.cursor(['user']);
 export const productsCursor = state.cursor(['products']);
 export const totalCursor = state.cursor(['total']);
 export const searchCursor = state.cursor(['search']);
-export const initCursor = state.cursor(['init']);

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {getSearchQuery, getSearchPage} from '../search/store';
-import {initCursor} from '../state';
 import {searchForQuery} from '../search/actions';
 
 import SearchPage from '../pages/searchpage.react';
@@ -14,17 +13,13 @@ export default
 class SearchPageRoute extends React.Component {
   static willTransitionTo(transition, params, query, callback) {
     if (isNewSearch(query)) {
-      const searching = searchForQuery(query).catch(callback);
-      if (!initCursor()) {
-        const timeout = setTimeout(() => callback(new Error('timeout transitionto')), 1000);
-        searching.then(() => {
+      const timeout = setTimeout(() => callback(new Error('timeout transitionto')), 1000);
+      searchForQuery(query)
+        .then(() => {
           clearTimeout(timeout);
-          initCursor(() => true);
           callback();
-        });
-      } else {
-        callback();
-      }
+        })
+        .catch(callback);
     } else {
       callback();
     }
