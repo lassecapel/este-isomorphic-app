@@ -27,6 +27,7 @@ export default {
     {id: 2, title: 'relax'}
   ],
   products: [],
+  total: 0,
   user: {
     authData: null
   },
