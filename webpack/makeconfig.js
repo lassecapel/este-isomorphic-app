@@ -14,10 +14,10 @@ var loaders = {
   'styl': '!stylus-loader'
 };
 
-module.exports = function(isDevelopment) {
+module.exports = function (isDevelopment) {
 
   function stylesLoaders() {
-    return Object.keys(loaders).map(function(ext) {
+    return Object.keys(loaders).map(function (ext) {
       var prefix = 'css-loader!autoprefixer-loader?browsers=last 2 version';
       var extLoaders = prefix + loaders[ext];
       var loader = isDevelopment
@@ -40,7 +40,8 @@ module.exports = function(isDevelopment) {
         // Why only-dev-server instead of dev-server:
         // https://github.com/webpack/webpack/issues/418#issuecomment-54288041
         'webpack/hot/only-dev-server',
-        './src/client/main.js'
+        './src/client/main.js',
+        'react/addons'
       ] : [
         './src/client/main.js'
       ],
@@ -61,18 +62,25 @@ module.exports = function(isDevelopment) {
       ]
     },
     module: {
-      loaders: [{
-        loader: 'url-loader?limit=100000',
-        test: /\.(gif|jpg|png|woff|woff2|eot|ttf|svg)$/
-      }, {
-        exclude: /node_modules/,
-        loaders: isDevelopment ? [
-          'react-hot', 'babel-loader?optional=runtime'
-        ] : [
-          'babel-loader?optional=runtime'
-        ],
-        test: /\.js$/
-      }].concat(stylesLoaders())
+      loaders: (function() {
+        var loaders = [{
+          loader: 'url-loader?limit=100000',
+          test: /\.(gif|jpg|png|woff|woff2|eot|ttf|svg)$/
+        }, {
+          exclude: /node_modules/,
+          loaders: isDevelopment ? [
+            'react-hot', 'babel-loader?optional=runtime'
+          ] : [
+            'babel-loader?optional=runtime'
+          ],
+          test: /\.js$/
+        }].concat(stylesLoaders());
+
+        if (isDevelopment) {
+          loaders.push({test: require.resolve('react'), loader: 'expose?React'});
+        }
+        return loaders;
+      })()
     },
     output: isDevelopment ? {
       path: path.join(__dirname, '/build/'),
