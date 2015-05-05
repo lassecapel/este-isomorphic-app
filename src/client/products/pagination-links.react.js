@@ -21,7 +21,7 @@ class PaginationLinks extends PureComponent {
     const router = this.props.router;
     const query = Object.assign({}, this.props.query); //clone query to avoid mutating it
     query.page = page;
-    return router.makeHref(this.props.path, {}, this.props.query);
+    return router.makeHref(this.props.path, {}, query);
   }
 
   static getPages(page, total) {
