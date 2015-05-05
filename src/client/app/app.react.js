@@ -26,7 +26,7 @@ class App extends React.Component {
   render() {
     const isActive = this.props.router.isActive;
     return (
-      <DocumentTitle title='Este.js App'>
+      <DocumentTitle title='Isomorphic Demo App' /* only shown when the route doesn't define a title */>
         <div className='container'>
           <div className='row'>
             <ul className='nav nav-tabs'>
@@ -34,12 +34,14 @@ class App extends React.Component {
               <li role="presentation" className={isActive('todos') ? 'active' : null}><Link to="todos">Todo's</Link></li>
             </ul>
           </div>
-          <RouteHandler/>
-          <footer className='row'>
+          <div className='row'>
+            <RouteHandler/>
+          </div>
+          <div className='row'>
             <p>
               made by Web Technology Innovation Squad
             </p>
-          </footer>
+          </div>
         </div>
       </DocumentTitle>
     );
