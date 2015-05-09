@@ -10,7 +10,7 @@ export default class ProductTile extends PureComponent {
     const normalizedName = this.props.product.get('normalizedName');
     return (
       <div style={{textAlign: 'center'}} className='col-xs-6 col-sm-4 col-md-3 col-lg-3'>
-        <div>{title}</div>
+        <div style={{height: '60px'}}>{title}</div>
         <div><ProductImage productNumber={productNumber} normalizedName={normalizedName} alt={title}/></div>
       </div>
     );
