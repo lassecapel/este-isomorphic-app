@@ -8,7 +8,7 @@ class SearchBox extends PureComponent {
     e.preventDefault();
     const router = this.props.router;
     const query = router.getCurrentQuery();
-    var inputValue = document.forms.searchForm.q.value;
+    var inputValue = React.findDOMNode(this.refs.searchBoxInput).value;
     if (query.q !== inputValue) {
       query.q = inputValue;
       query.page = 1;
@@ -18,12 +18,13 @@ class SearchBox extends PureComponent {
 
   render() {
     return (
-      <form name="searchForm" onSubmit={(e) => {this.handleSubmit(e)}}>
+      <form name='searchForm' onSubmit={(e) => {this.handleSubmit(e)}}>
         <div className='col-md-2'>
         <input
-          className="form-control"
+          className='form-control'
           type='text'
-          name="q"
+          name='q'
+          ref='searchBoxInput'
           placeholder={msg('search.placeholder')}
           defaultValue={this.props.query}
           />
