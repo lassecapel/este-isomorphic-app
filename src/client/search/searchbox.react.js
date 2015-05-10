@@ -20,16 +20,17 @@ class SearchBox extends PureComponent {
     return (
       <form name='searchForm' onSubmit={(e) => {this.handleSubmit(e)}}>
         <div className='col-md-2'>
-        <input
-          className='form-control'
-          type='text'
-          name='q'
-          ref='searchBoxInput'
-          placeholder={msg('search.placeholder')}
-          defaultValue={this.props.query}
-          />
-          <input type='hidden' name='page' value='1' />
-        <p>Searched for {this.props.query}</p>
+          <input
+            className='form-control'
+            type='text'
+            name='q'
+            ref='searchBoxInput'
+            placeholder={msg('search.placeholder')}
+            defaultValue={this.props.query}
+            />
+          <input type='hidden' name='page' value='1'/>
+
+          { this.props.query ? <p>Searched for {this.props.query}</p> : <p>Enter a search query</p>}
         </div>
       </form>
     );

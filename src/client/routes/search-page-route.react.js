@@ -2,7 +2,7 @@ import React from 'react';
 
 import {searchForQuery} from '../search/actions';
 
-import SearchPage from '../pages/searchpage.react';
+import SearchPage from '../pages/search-page.react';
 
 /*eslint-disable indent */ //Eslint is bugged in this file
 
