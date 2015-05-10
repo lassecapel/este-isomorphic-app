@@ -17,6 +17,10 @@ class SearchBox extends PureComponent {
   }
 
   render() {
+    var searchMessage;
+    if (!this.props.query) {
+      searchMessage = <p>Enter a search query</p>;
+    }
     return (
       <form name='searchForm' onSubmit={(e) => {this.handleSubmit(e)}}>
         <div className='col-md-2'>
@@ -29,8 +33,7 @@ class SearchBox extends PureComponent {
             defaultValue={this.props.query}
             />
           <input type='hidden' name='page' value='1'/>
-
-          { this.props.query ? <p>Searched for {this.props.query}</p> : <p>Enter a search query</p>}
+          {searchMessage}
         </div>
       </form>
     );
